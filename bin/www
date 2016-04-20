@@ -7,7 +7,6 @@
 var app = require('../app');
 var debug = require('debug')('networkMidProject:server');
 var http = require('http');
-var socketIO = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -21,20 +20,6 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
-/**
- *  Init socket io and litstener
- */
-
-var io = socketIO(server);
-
-io.on('connection', function(socket) {
-  debug('client ' + socket.id + ' connected');
-  socket.emit('system message', 'Connected with id:'+socket.id);
-  socket.on('message', function(msg) {
-    io.emit('message', "You said:" + msg);
-  });
-});
 
 /**
  * Listen on provided port, on all network interfaces.
