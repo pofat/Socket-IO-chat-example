@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('networkMidProject:server');
+var debug = require('debug')('socketIOChat:server');
 var http = require('http');
 
 /**
